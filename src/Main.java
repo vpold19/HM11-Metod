@@ -1,31 +1,54 @@
+import java.time.LocalDate;
+
 public class Main {
-    public static void toBeLeapYear(int year) {
-        System.out.println(year + " год — високосный год");
-    }
-    public static void notToBeLeapYear(int year){
-        System.out.println(year + " год — невисокосный год ");
-    }
 
         public static void main (String[]args){
-            task1();
-            task2();
-            task3();
+            checkTheLeapYear(2333);
+            checkOs(0,2021);
+            printOfInfoDelivery(20);
         }
 
-        public static void task1 () {
-            System.out.println("Задача 1");
-            int year = 2021;
+        public static void checkTheLeapYear (int year) {
             if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
-                toBeLeapYear(year);
+                System.out.println( year + " - високосный год");
             } else {
-                notToBeLeapYear(year);
+                System.out.println(year + " - невисокосный год");
             }
         }
-        public static void task2 () {
-            System.out.println("Задача 2");
-        }
-        public static void task3 () {
-            System.out.println("Задача 3");
+        public static void checkOs (int clientSystem,int deviceYear) {
+            int currentYear = LocalDate.now().getYear();
+            String osResult = "Установите %sверсию для %s по ссылке.";
+            if (clientSystem==0) {
+                if (currentYear>deviceYear) {
+                    System.out.printf(osResult,"облегченную ","IOS");
+                } else {
+                    System.out.printf(osResult,"","IOS");
+                }
+            }
+            if (clientSystem==1){
+                if( currentYear>deviceYear){
+                    System.out.printf(osResult,"облегченную ","Android");
+                } else {
+                    System.out.printf(osResult,"","Android");
+                }
+            }
+            if (clientSystem!=0 && clientSystem !=1){
+                System.out.println("Для вашего устройства нет обновлений");
+            }
+            System.out.println();
         }
 
-}
+    public static int printOfInfoDelivery(int delivery) {
+        if (delivery < 20) {
+            System.out.println("Доставка занимает сутки");
+        } else if (delivery >= 20 && delivery < 60) {
+            System.out.println("Доставка занимает двое суток");
+        } else if (delivery >= 60 && delivery < 100) {
+            System.out.println("Доставка занимает трое суток");
+        }
+        if (delivery >= 100) {
+            System.out.println("Доставки нет, сами идите за ней");
+        }
+        return 0;
+    }
+    }
